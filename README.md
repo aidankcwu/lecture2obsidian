@@ -1,4 +1,4 @@
-# lecture-to-obsidian
+# lecture2obsidian
 
 Convert lecture recordings into structured Obsidian notes using local Whisper transcription and LLM summarization. Trigger it instantly from a Raycast keyboard shortcut — no terminal required.
 
