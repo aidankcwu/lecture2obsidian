@@ -3,3 +3,6 @@ click
 pyyaml
 python-dotenv
 pydub
+sounddevice
+numpy
+faster-whisper

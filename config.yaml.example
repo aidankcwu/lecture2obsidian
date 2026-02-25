@@ -1,5 +1,6 @@
 # lecture-to-obsidian configuration
-# Copy this file to config.yaml and fill in your values.
+# Copy this file to config.yaml and fill in your values, or run:
+#   python -m app.cli init
 # config.yaml is gitignored so your vault path stays private.
 
 vault:
@@ -11,23 +12,52 @@ vault:
   inbox_folder: "1 - Inbox"
 
   # Folder inside the vault where raw transcripts are written
-  # Created automatically if it doesn't exist
   source_folder: "2 - Source Materials/Lectures"
 
 summarization:
   # OpenAI model used for summarization
-  # gpt-4o-mini is fast and cheap; swap for gpt-4o for higher quality
   model: "gpt-4o-mini"
 
   # Approximate maximum words per section in the generated summary
-  # Higher values produce more detail; lower values force brevity
   max_section_length: 500
 
 note_template:
-  # Default status tag applied to new summary notes
+  # Default status tag on new summary notes
   status: "#review"
 
-  # How course tags are formatted in notes
-  # "wikilink" → [[COMP182]]
-  # "hashtag"  → #COMP182
+  # How course tags are formatted: "wikilink" → [[CS301]], "hashtag" → #CS301
   tag_style: "wikilink"
+
+transcription:
+  # "local"  — use faster-whisper (no API calls, runs on-device, ~150 MB model download on first run)
+  # "api"    — use OpenAI Whisper API (requires OPENAI_API_KEY, billed per minute)
+  backend: "local"
+
+  # faster-whisper model to use (only relevant when backend: local)
+  # Options: tiny.en, base.en, small.en, medium.en (larger = more accurate, slower)
+  local_model: "base.en"
+
+recording:
+  # Where to move the WAV file after successful processing
+  # Omit this key entirely to delete the WAV after processing
+  archive_dir: "~/recordings"
+
+# Schedule-based course auto-detection for the `toggle` command.
+# When `toggle` is called without --course, the current day/time is checked
+# against these entries (with a 15-minute buffer on either side).
+# Falls back to default_course if no match is found.
+schedule:
+  Monday:
+    - time: "09:00-10:15"
+      course: "CS 301"
+      title_prefix: "Data Structures"
+    - time: "14:00-15:15"
+      course: "MATH 240"
+      title_prefix: "Linear Algebra"
+  Tuesday:
+    - time: "11:00-12:15"
+      course: "CS 350"
+      title_prefix: "Operating Systems"
+  # Add more days as needed...
+
+default_course: "Lecture"
