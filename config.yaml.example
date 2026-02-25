@@ -1,0 +1,33 @@
+# lecture-to-obsidian configuration
+# Copy this file to config.yaml and fill in your values.
+# config.yaml is gitignored so your vault path stays private.
+
+vault:
+  # Absolute path to your Obsidian vault root
+  path: "/path/to/your/obsidian/vault"
+
+  # Folder inside the vault where summary notes are written
+  # Created automatically if it doesn't exist
+  inbox_folder: "1 - Inbox"
+
+  # Folder inside the vault where raw transcripts are written
+  # Created automatically if it doesn't exist
+  source_folder: "2 - Source Materials/Lectures"
+
+summarization:
+  # OpenAI model used for summarization
+  # gpt-4o-mini is fast and cheap; swap for gpt-4o for higher quality
+  model: "gpt-4o-mini"
+
+  # Approximate maximum words per section in the generated summary
+  # Higher values produce more detail; lower values force brevity
+  max_section_length: 500
+
+note_template:
+  # Default status tag applied to new summary notes
+  status: "#review"
+
+  # How course tags are formatted in notes
+  # "wikilink" → [[COMP182]]
+  # "hashtag"  → #COMP182
+  tag_style: "wikilink"
